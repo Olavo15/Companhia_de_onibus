@@ -51,7 +51,9 @@ class PassageiroRepository {
         $id = $passageiro->getId();
         $nome = $passageiro->getNome();
         $idade = $passageiro->getIdade();
-    }   
+        
+    }
+    
 }
         // Prepare a consulta SQL para inserir o passageiro no banco de dados
 //         $sql = "INSERT INTO passageiros (id, nome, idade) VALUES ('$id', '$nome', '$idade')";

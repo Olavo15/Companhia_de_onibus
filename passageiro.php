@@ -1,4 +1,5 @@
 <?php
+require_once 'DB/DataHandler.php';
 
 class Passageiro {
     protected $id;
@@ -47,16 +48,14 @@ class PassageiroRepository {
     }
 
     public function salvar(Passageiro $passageiro) {
-        $N_cadeira = $passageiro->getNumeroCadeira();
+        $Ncadeira = $passageiro->getNumeroCadeira();
         $nome = $passageiro->getNome();
         $idade = $passageiro->getIdade();
-
-        // Substituído por uma lógica
-        // if (DataHandler::criarPassageiro($nome, $idade)) {
-        //     echo "Passageiro salvo com sucesso.\n";
-        // } else {
-        //     echo "Erro ao salvar passageiro.\n";
-        // }
+        if (DataHandler::criarPassageiro($nome, $idade, $Ncadeira)) {
+            echo "Passageiro salvo com sucesso.\n";
+        } else {
+            echo "Erro ao salvar passageiro.\n";
+        }
         echo "Passageiro salvo com sucesso.\n";
     }
 }

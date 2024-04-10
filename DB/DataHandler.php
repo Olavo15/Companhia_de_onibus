@@ -4,12 +4,10 @@ require_once 'Conexao.php';
 class DataHandler {
     protected static $conexao;
 
-    public static function criarPassageiro($nome, $idade) {
+    public static function criarPassageiro($nome, $idade, $Ncadeira) {
         self::$conexao = Conexao::getConexao(); // Inicializa a conexão
-
-        $stmt = self::$conexao->prepare("INSERT INTO passageiros (id, nome, idade) VALUES (?, ?, ?)");
         $id = uniqid();
-        $stmt->bind_param("ssi", $id, $nome, $idade);
+        $stmt = self::$conexao->prepare("INSERT INTO viacaoJuina (id, nome, idade, Ncadeira) VALUES ('$id', '$nome', '$idade', '$Ncadeira')");
 
         if ($stmt->execute()) {
             return true;
