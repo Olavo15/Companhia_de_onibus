@@ -4,11 +4,13 @@ class Passageiro {
     protected $id;
     protected $nome;
     protected $idade;
+    protected $numeroCadeira;
 
     public function __construct($nome, $idade) {
         $this->nome = $nome;
         $this->idade = $idade;
         $this->gerarId();
+        $this->gerarNumeroCadeira(); 
     }
 
     public function getNome() {
@@ -23,9 +25,18 @@ class Passageiro {
         return $this->id;
     }
 
+    public function getNumeroCadeira() { 
+        return $this->numeroCadeira;
+    }
+
     protected function gerarId() {
-        // Gere um ID aleatório utilizando a função uniqid()
+        // Gerar um ID aleatório utilizando a função uniqid()
         $this->id = uniqid();
+    }
+
+    protected function gerarNumeroCadeira() {
+       
+        $this->numeroCadeira = str_pad(mt_rand(1, 99), 2, '0', STR_PAD_LEFT);
     }
 }
 

@@ -1,14 +1,17 @@
+User
 <?php
 
 class Passageiro {
     protected $id;
     protected $nome;
     protected $idade;
+    protected $numeroCadeira; 
 
     public function __construct($nome, $idade) {
         $this->nome = $nome;
         $this->idade = $idade;
         $this->gerarId();
+        $this->gerarNumeroCadeira(); 
     }
 
     public function getNome() {
@@ -23,9 +26,18 @@ class Passageiro {
         return $this->id;
     }
 
+    public function getNumeroCadeira() { 
+        return $this->numeroCadeira;
+    }
+
     protected function gerarId() {
-        // Gere um ID aleatório utilizando a função uniqid()
+        // Gerar um ID aleatório utilizando a função uniqid()
         $this->id = uniqid();
+    }
+
+    protected function gerarNumeroCadeira() {
+       
+        $this->numeroCadeira = str_pad(mt_rand(1, 99), 2, '0', STR_PAD_LEFT);
     }
 }
 
@@ -46,9 +58,9 @@ class Viagem {
     }
 
     public function listarPassageiros() {
-        echo "Lista de passageiros na viagem de {$this->origem} para destino {$this->destino} em {$this->data}:\n";
+        echo "Lista de passageiros na viagem de {$this->origem} para o destino {$this->destino} em {$this->data}:\n";
         foreach ($this->passageiros as $passageiro) {
-            echo "Nome: {$passageiro->getNome()}, Numero da passagem: {$passageiro->getIdade()}\nO Numero da sua passagem: {$passageiro->getId()}\n";
+            echo "Nome: {$passageiro->getNome()}, ID do passageiro: {$passageiro->getId()}, Número da cadeira: {$passageiro->getNumeroCadeira()}\n";
         }
     }
 }
