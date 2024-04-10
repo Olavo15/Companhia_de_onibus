@@ -3,7 +3,7 @@ require_once 'passageiro.php';
 ?>
 
 <?php 
-$viagem = new Viagem('Juazeiro do Norte-CE', 'Fortaleza-CE', '2024-04-10');
+$viagem = new Viagem('Juazeiro do Norte-CE01', 'Fortaleza-CE', '2024-04-10');
 
 $passageiro1 = new Passageiro('João Paulo', 1);
 $passageiro2 = new Passageiro('Joaquim', 5);
