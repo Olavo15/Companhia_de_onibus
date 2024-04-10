@@ -9,6 +9,7 @@ class Passageiro {
     public function __construct($nome, $idade) {
         $this->nome = $nome;
         $this->idade = $idade;
+        $this->gerarId();
         $this->gerarNumeroCadeira(); 
     }
 
@@ -19,9 +20,18 @@ class Passageiro {
     public function getIdade() {
         return $this->idade;
     }
+    
+    public function getId() {
+        return $this->id;
+    }
 
     public function getNumeroCadeira() { 
         return $this->numeroCadeira;
+    }
+
+    protected function gerarId() {
+        // Gerar um ID aleatório utilizando a função uniqid()
+        $this->id = uniqid();
     }
 
     protected function gerarNumeroCadeira() {
@@ -41,7 +51,7 @@ class PassageiroRepository {
         $nome = $passageiro->getNome();
         $idade = $passageiro->getIdade();
 
-        // Substituído por uma lógica de exemplo
+        // Substituído por uma lógica
         // if (DataHandler::criarPassageiro($nome, $idade)) {
         //     echo "Passageiro salvo com sucesso.\n";
         // } else {
@@ -70,7 +80,7 @@ class Viagem {
     public function listarPassageiros() {
         echo "Lista de passageiros na viagem de {$this->origem} para o destino {$this->destino} em {$this->data}:\n";
         foreach ($this->passageiros as $passageiro) {
-            echo "Nome: {$passageiro->getNome()}, Idade: {$passageiro->getIdade()}, Número da cadeira: {$passageiro->getNumeroCadeira()}\n";
+            echo "Nome: {$passageiro->getNome()},\nId da passagem: {$passageiro->getId()},\nNúmero da cadeira: {$passageiro->getNumeroCadeira()}\n";
         }
     }
 }
