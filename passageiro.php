@@ -37,7 +37,7 @@ class Passageiro {
 
     protected function gerarNumeroCadeira() {
        
-        $this->numeroCadeira = str_pad(mt_rand(1, 99), 2, '0', STR_PAD_LEFT);
+        $this->numeroCadeira = str_pad(mt_rand(1, 40), 2, '0', STR_PAD_LEFT);
     }
 }
 
