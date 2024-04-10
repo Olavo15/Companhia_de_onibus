@@ -60,7 +60,7 @@ class Viagem {
     public function listarPassageiros() {
         echo "Lista de passageiros na viagem de {$this->origem} para o destino {$this->destino} em {$this->data}:\n";
         foreach ($this->passageiros as $passageiro) {
-            echo "Nome: {$passageiro->getNome()}, ID do passageiro: {$passageiro->getId()}, Número da cadeira: {$passageiro->getNumeroCadeira()}\n";
+            echo "Nome: {$passageiro->getNome()}, ID da passagem: {$passageiro->getId()}, Número da cadeira: {$passageiro->getNumeroCadeira()}\n";
         }
     }
 }
