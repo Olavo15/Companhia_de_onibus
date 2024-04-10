@@ -1,15 +1,17 @@
 <?php
-require_once 'DB/DataHandler.php';
 
 class Passageiro {
     protected $id;
     protected $nome;
     protected $idade;
-    protected $numeroCadeira;
+    protected $numeroCadeira; 
 
-    public function __construct($nome, $idade) {
+    protected $formaPagamento;
+
+    public function __construct($nome, $idade, $formaPagamento) {
         $this->nome = $nome;
         $this->idade = $idade;
+        $this->formaPagamento = $formaPagamento;
         $this->gerarId();
         $this->gerarNumeroCadeira(); 
     }
@@ -21,13 +23,16 @@ class Passageiro {
     public function getIdade() {
         return $this->idade;
     }
-    
+
     public function getId() {
         return $this->id;
     }
 
     public function getNumeroCadeira() { 
         return $this->numeroCadeira;
+    }
+    public function getForPagamento() {
+        return $this->formaPagamento;
     }
 
     protected function gerarId() {
@@ -36,27 +41,8 @@ class Passageiro {
     }
 
     protected function gerarNumeroCadeira() {
+       // Gerar um número de cadeira entre 1 e 40
         $this->numeroCadeira = str_pad(mt_rand(1, 40), 2, '0', STR_PAD_LEFT);
-    }
-}
-
-class PassageiroRepository {
-    protected $conexao;
-
-    public function __construct($conexao) {
-        $this->conexao = $conexao;
-    }
-
-    public function salvar(Passageiro $passageiro) {
-        $Ncadeira = $passageiro->getNumeroCadeira();
-        $nome = $passageiro->getNome();
-        $idade = $passageiro->getIdade();
-        if (DataHandler::criarPassageiro($nome, $idade, $Ncadeira)) {
-            echo "Passageiro salvo com sucesso.\n";
-        } else {
-            echo "Erro ao salvar passageiro.\n";
-        }
-        echo "Passageiro salvo com sucesso.\n";
     }
 }
 
@@ -64,24 +50,36 @@ class Viagem {
     public $origem;
     public $destino;
     public $data;
+    public $data2;
+    private $valor;
     protected $passageiros = [];
 
-    public function __construct($origem, $destino, $data) {
+    public function __construct($origem, $destino, $data,$data2, $valor) {
         $this->origem = $origem;
         $this->destino = $destino;
         $this->data = $data;
+        $this->data2 = $data2;
+        $this->valor = $valor;
     }
 
     public function adicionarPassageiro(Passageiro $passageiro) {
         $this->passageiros[] = $passageiro;
     }
 
+    public function getValor() {
+        return $this->valor;
+    }
+
     public function listarPassageiros() {
-        echo "Lista de passageiros na viagem de {$this->origem} para o destino {$this->destino} em {$this->data}:\n";
+        echo "------------------------------------------------------Lista de passageiros---------------------------------------------------- \n";
+        echo "Origem: {$this->origem}\nDestino: {$this->destino}\nSaida: {$this->data}\nChegada: {$this->data2}\n";
         foreach ($this->passageiros as $passageiro) {
-            echo "Nome: {$passageiro->getNome()},\nId da passagem: {$passageiro->getId()},\nNúmero da cadeira: {$passageiro->getNumeroCadeira()}\n";
+            echo "Passageiro: {$passageiro->getNome()},ID da passagem: {$passageiro->getId()}, Número da cadeira: {$passageiro->getNumeroCadeira()}, Valor da passagem: {$this->getValor()}({$passageiro->getForPagamento()})\n\n";
         }
+        echo "----------------------------------------------------------------------------------------------------------------------------- \n";
     }
 }
+
+
 
 ?>

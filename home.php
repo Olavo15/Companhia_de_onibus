@@ -1,29 +1,17 @@
 <?php
 require_once 'passageiro.php';
-require_once 'DB/Conexao.php';
+?>
 
-$conexao = new Conexao(); 
+<?php 
+$viagem = new Viagem('Juazeiro do Norte-CE', 'Fortaleza-CE', '10-04-2024 - 22:55h', '11-04-2024 - 06:55h','R$ 35');
 
-$viagem = new Viagem('Juazeiro do Norte-CE', 'Fortaleza-CE', '2024-04-10');
-
-$passageiroRepository = new PassageiroRepository($conexao);
-
-$passageiro1 = new Passageiro('Santos 2024!!!', 666);
-$passageiro2 = new Passageiro('Olavo', 21);
-$passageiro3 = new Passageiro('Ari', 21);
-$passageiro4 = new Passageiro('Pierre', 45);
-
-
-$passageiroRepository->salvar($passageiro1);
-$passageiroRepository->salvar($passageiro2);
-$passageiroRepository->salvar($passageiro3);
-$passageiroRepository->salvar($passageiro4);
+$passageiro1 = new Passageiro('João Paulo Aquino', 25, 'PIX');
+$passageiro2 = new Passageiro('Joaquim Cabral', 30,'Dinheiro');
+$passageiro3 = new Passageiro('Gil Bacural', 21,'Cartão');
 
 $viagem->adicionarPassageiro($passageiro1);
 $viagem->adicionarPassageiro($passageiro2);
 $viagem->adicionarPassageiro($passageiro3);
-$viagem->adicionarPassageiro($passageiro4);
 
 $viagem->listarPassageiros();
-
 ?>
