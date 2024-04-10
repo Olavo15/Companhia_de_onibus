@@ -46,24 +46,11 @@ class Viagem {
     }
 
     public function listarPassageiros() {
-        echo "Lista de passageiros na viagem de {$this->origem} para {$this->destino} em {$this->data}:\n";
+        echo "Lista de passageiros na viagem de {$this->origem} para destino {$this->destino} em {$this->data}:\n";
         foreach ($this->passageiros as $passageiro) {
-            echo "Nome: {$passageiro->getNome()}, Idade: {$passageiro->getIdade()}\nO Numero da sua passagem: {$passageiro->getId()}\n";
+            echo "Nome: {$passageiro->getNome()}, Numero da passagem: {$passageiro->getIdade()}\nO Numero da sua passagem: {$passageiro->getId()}\n";
         }
     }
 }
-
-// Exemplo de uso:
-$viagem = new Viagem('Cidade A', 'Cidade B', '2024-04-10');
-
-$passageiro1 = new Passageiro('João', 30);
-$passageiro2 = new Passageiro('Maria', 25);
-$passageiro3 = new Passageiro('Nemo', 21);
-
-$viagem->adicionarPassageiro($passageiro1);
-$viagem->adicionarPassageiro($passageiro2);
-$viagem->adicionarPassageiro($passageiro3);
-
-$viagem->listarPassageiros();
 
 ?>
