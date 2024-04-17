@@ -1,5 +1,4 @@
 <?php
-require_once 'DB/DataHandler.php';
 
 class Passageiro {
     protected $id;
@@ -21,7 +20,7 @@ class Passageiro {
     public function getIdade() {
         return $this->idade;
     }
-    
+
     public function getId() {
         return $this->id;
     }
@@ -36,6 +35,7 @@ class Passageiro {
     }
 
     protected function gerarNumeroCadeira() {
+       
         $this->numeroCadeira = str_pad(mt_rand(1, 40), 2, '0', STR_PAD_LEFT);
     }
 }
@@ -48,40 +48,41 @@ class PassageiroRepository {
     }
 
     public function salvar(Passageiro $passageiro) {
-        $Ncadeira = $passageiro->getNumeroCadeira();
+        $id = $passageiro->getId();
         $nome = $passageiro->getNome();
         $idade = $passageiro->getIdade();
-        if (DataHandler::criarPassageiro($nome, $idade, $Ncadeira)) {
-            echo "Passageiro salvo com sucesso.\n";
-        } else {
-            echo "Erro ao salvar passageiro.\n";
-        }
-        echo "Passageiro salvo com sucesso.\n";
+        
     }
+    
 }
+        // Prepare a consulta SQL para inserir o passageiro no banco de dados
+//         $sql = "INSERT INTO passageiros (id, nome, idade) VALUES ('$id', '$nome', '$idade')";
 
-class Viagem {
-    public $origem;
-    public $destino;
-    public $data;
-    protected $passageiros = [];
+//         // Execute a consulta
+//         if ($this->conexao->query($sql) === TRUE) {
+//             echo "Passageiro salvo no banco de dados com sucesso.\n";
+//         } else {
+//             echo "Erro ao salvar passageiro no banco de dados: " . $this->conexao->error;
+//         }
+//     }
+// }
 
-    public function __construct($origem, $destino, $data) {
-        $this->origem = $origem;
-        $this->destino = $destino;
-        $this->data = $data;
-    }
 
-    public function adicionarPassageiro(Passageiro $passageiro) {
-        $this->passageiros[] = $passageiro;
-    }
+// $conexao = new mysqli("localhost", "usuario", "senha", "nome_do_banco");
+// if ($conexao->connect_error) {
+//     die("Erro de conexão: " . $conexao->connect_error);
+// }
 
-    public function listarPassageiros() {
-        echo "Lista de passageiros na viagem de {$this->origem} para o destino {$this->destino} em {$this->data}:\n";
-        foreach ($this->passageiros as $passageiro) {
-            echo "Nome: {$passageiro->getNome()},\nId da passagem: {$passageiro->getId()},\nNúmero da cadeira: {$passageiro->getNumeroCadeira()}\n";
-        }
-    }
-}
+// $passageiroRepository = new PassageiroRepository($conexao);
+
+// $passageiro1 = new Passageiro('João', 30);
+// $passageiro2 = new Passageiro('Maria', 25);
+
+
+// $passageiroRepository->salvar($passageiro1);
+// $passageiroRepository->salvar($passageiro2);
+
+// // Fechando a conexão com o banco de dados
+// $conexao->close();
 
 ?>
