@@ -1,7 +1,7 @@
 <?php
 spl_autoload_register(function ($class) {
-    $prefix = 'App\\';
-    $base_dir = __DIR__ . '/src/';
+    $prefix = 'Controller\\';
+    $base_dir = __DIR__ . '/src/App/Controller';
 
     $len = strlen($prefix);
     if (strncmp($prefix, $class, $len) !== 0) {
