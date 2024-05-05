@@ -1,5 +1,5 @@
 <?php
-require_once 'Conexao.php';
+require_once '../Conexao.php';
 
 class migrationPassageiro{
     protected $conexao;
@@ -9,15 +9,15 @@ class migrationPassageiro{
     }
 
     public function migration(){
-        $sql = "CREATE TABLE IF NOT EXISTS viacaoJuina (
+        $sql = "CREATE TABLE passageiro (
             id VARCHAR(255) PRIMARY KEY,
             nome VARCHAR(255) NOT NULL,
             idade INT NOT NULL,
-            Ncadeira INT NOT NULL
+            cpf VARCHAR(12) NOT NULL
         )";
 
         if ($this->conexao->query($sql) === TRUE) {
-            echo "Tabela passageiros criada com sucesso!.\n";
+            echo "Tabela PASSAGEIRO criada com sucesso!.\n";
         } else {
             echo "Erro na criação da tabela: " . $this->conexao->error;
         }
