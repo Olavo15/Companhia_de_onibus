@@ -44,6 +44,10 @@ class router extends routerSwitch{
                         break;
                 }
                 break;
+                
+            case strpos($requestUri, 'assento/search') === 0:
+                $this->assentoOnibus();
+                break;
 
             default:
                 http_response_code(404);

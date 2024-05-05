@@ -1,15 +1,20 @@
 <?php 
 require_once __DIR__ . '/../controller/onibusController.php';
 require_once __DIR__ . '/../controller/viagemController.php';
+require_once __DIR__ . '/../controller/assentoController.php';
+
 
 class RouterSwitch {
     private $onibusController;
     private $viagemController;
+    private $assentoController;
     
 
     public function __construct(){
         $this->onibusController = new onibusController();
         $this->viagemController = new viagemController();
+        $this->assentoController = new assentoController();
+
     }
 
     protected function busManyRouter() {
@@ -35,6 +40,11 @@ class RouterSwitch {
         $json = file_get_contents('php://input');
         $dados = json_decode($json, true);
         $this->viagemController->novaViagem($dados);
+    }
+
+    protected function assentoOnibus(){
+        $onibusId = isset($_GET['onibus']) ? $_GET['onibus'] : null;
+        $this->assentoController->assentoOnibusById($onibusId);
     }
 }
 

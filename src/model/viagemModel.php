@@ -27,7 +27,7 @@ class viagemModel {
             FROM VIAGEM vg
                 INNER JOIN onibus bus ON bus.id = vg.onibus_id
                 LEFT JOIN assento ast ON ast.onibus_id = bus.id
-            GROUP BY vg.id, vg.origem, vg.destino, vg.partida_dt, vg.chegada_dt, vg.valor, bus.numero, bus.max_assento;
+            GROUP BY vg.id, vg.origem, vg.destino, vg.partida_dt, vg.chegada_dt, vg.valor,bus.id, bus.numero, bus.max_assento;
             "
         );
         echo json_encode($listaViagem->fetch_all(MYSQLI_ASSOC));
