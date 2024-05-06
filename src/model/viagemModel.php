@@ -21,8 +21,10 @@ class viagemModel {
                 vg.partida_dt,
                 vg.chegada_dt,
                 vg.valor,
+                vg.onibus_id,
                 bus.numero AS onibus,
                 bus.max_assento,
+                bus.id,
                 COUNT(ast.id) AS assentos_ocupados
             FROM VIAGEM vg
                 INNER JOIN onibus bus ON bus.id = vg.onibus_id
@@ -34,9 +36,6 @@ class viagemModel {
     }
     
     public static function create($dados) {
-        $verificandoOnibus = elf::$conexao->prepare("");
-        $verificandoRotaOnibus = elf::$conexao->prepare("");
-
         $id = uniqid();
         $sqlNewViagem = self::$conexao->prepare("
             INSERT INTO VIAGEM (

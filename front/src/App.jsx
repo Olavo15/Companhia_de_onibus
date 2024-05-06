@@ -13,6 +13,7 @@ function App() {
     chegada: '',
     chegadaDt: '',
     onibus_id:'',
+    max_assento: 0
   })
 
   useEffect(() => {
@@ -29,15 +30,16 @@ function App() {
     console.log(viagens)
   }, []);
 
-  function openModal(){
+  function openModal(chegada,chegadaDt,onibus_id,origin,originDt,max_assento){
     setModalViagem({
       ...modalViagem,
       chegada,
       chegadaDt,
-      modal,
+      modal: true,
       onibus_id,
       origin,
-      originDt
+      originDt,
+      max_assento
     })
   }
 
@@ -45,12 +47,12 @@ function App() {
     <div className="flex flex-col w-full h-screen overflow-auto">
       <Header/>
       {
-        modalViagem.modal ? <Modal/> : null
+        modalViagem.modal ? <Modal close={() => setModalViagem({...modalViagem, modal: false})} chegada={modalViagem.chegada} chegadaDt={modalViagem.chegadaDt} max_assento={modalViagem.max_assento} onibus_id={modalViagem.onibus_id} origin={modalViagem.origin} originDt={modalViagem.originDt}/> : null
       }
       <h2>Lista de Viagens</h2>
-      <ul>
+      <ul className="w-full gap-3 flex">
         {viagens.map((viagem) => (
-          <button onClick={() => setModalViagem({...modalViagem, modal: true})} key={viagem.id} className="p-2 bg-zinc-300 w-fit rounded-lg shadow-lg text-left">
+          <button onClick={() => openModal(viagem.destino, viagem.chegada_dt, viagem.onibus_id, viagem.origem, viagem.partida_dt, viagem.max_assento)} key={viagem.id} className="px-3 py-2 bg-zinc-300 w-72 rounded-lg shadow-lg text-left">
             <p>
               Origem: {viagem.origem}
             </p>
