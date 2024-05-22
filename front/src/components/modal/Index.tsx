@@ -124,7 +124,7 @@ export function Modal(props: ModalProps){
                         </p>
                     </div>
                 </div>
-                <div className='flex-1 h-full'>
+                <div className='flex-1 h-full overflow-auto'>
                     {
                         posicaoModal == 0 ? <Assentos assentosDisponiveis={assentosDisponiveis} assentosOcupado={assentosOCP} assentoSelecionado={assentos} slectAseento={(index) => selecionarAssento(index)}/> :
                         posicaoModal == 1 ? <FormUser onSubmit={(data) => setPassageiro(data)}/> : 
