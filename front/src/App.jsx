@@ -13,7 +13,8 @@ function App() {
     chegada: '',
     chegadaDt: '',
     onibus_id:'',
-    max_assento: 0
+    max_assento: 0,
+    id: ''
   })
 
   useEffect(() => {
@@ -30,7 +31,7 @@ function App() {
     console.log(viagens)
   }, []);
 
-  function openModal(chegada,chegadaDt,onibus_id,origin,originDt,max_assento){
+  function openModal(chegada,chegadaDt,onibus_id,origin,originDt,max_assento, id){
     setModalViagem({
       ...modalViagem,
       chegada,
@@ -39,7 +40,8 @@ function App() {
       onibus_id,
       origin,
       originDt,
-      max_assento
+      max_assento,
+      id
     })
   }
 
@@ -47,12 +49,12 @@ function App() {
     <div className="flex flex-col w-full h-screen overflow-auto">
       <Header/>
       {
-        modalViagem.modal ? <Modal close={() => setModalViagem({...modalViagem, modal: false})} chegada={modalViagem.chegada} chegadaDt={modalViagem.chegadaDt} max_assento={modalViagem.max_assento} onibus_id={modalViagem.onibus_id} origin={modalViagem.origin} originDt={modalViagem.originDt}/> : null
+        modalViagem.modal ? <Modal close={() => setModalViagem({...modalViagem, modal: false})} chegada={modalViagem.chegada} id={modalViagem.id} chegadaDt={modalViagem.chegadaDt} max_assento={modalViagem.max_assento} onibus_id={modalViagem.onibus_id} origin={modalViagem.origin} originDt={modalViagem.originDt}/> : null
       }
       <h2>Lista de Viagens</h2>
       <ul className="w-full gap-3 flex">
         {viagens.map((viagem) => (
-          <button onClick={() => openModal(viagem.destino, viagem.chegada_dt, viagem.onibus_id, viagem.origem, viagem.partida_dt, viagem.max_assento)} key={viagem.id} className="px-3 py-2 bg-zinc-300 w-72 rounded-lg shadow-lg text-left">
+          <button onClick={() => openModal(viagem.destino, viagem.chegada_dt, viagem.onibus_id, viagem.origem, viagem.partida_dt, viagem.max_assento, viagem.id)} key={viagem.id} className="px-3 py-2 bg-zinc-300 w-72 rounded-lg shadow-lg text-left">
             <p>
               Origem: {viagem.origem}
             </p>

@@ -36,6 +36,7 @@ class viagemModel {
     }
     
     public static function create($dados) {
+        echo json_encode($dados);
         $id = uniqid();
         $sqlNewViagem = self::$conexao->prepare("
             INSERT INTO VIAGEM (

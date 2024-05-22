@@ -48,6 +48,21 @@ class router extends routerSwitch{
             case strpos($requestUri, 'assento/search') === 0:
                 $this->assentoOnibus();
                 break;
+                
+            case 'assento':
+                switch ($method) {
+                    case "POST":
+                        $this->novoAssento();
+                        break;
+                    case "GET":
+                        $this->assentoOnibus();
+                    default:
+                        http_response_code(405);
+                        echo json_encode(["mensagem" => "Método não permitido"]);
+                        break;
+                }
+            case 'passageiro':
+                $this->passageiroNovo();
 
             default:
                 http_response_code(404);

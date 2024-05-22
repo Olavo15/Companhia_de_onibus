@@ -12,4 +12,8 @@ class assentoController{
     public function assentoOnibusById($onibusId){
         $this->model->assentosOnibus($onibusId);
     }
+
+    public function novoAssento($dados){
+        $this->model->create($dados);
+    }
 }
