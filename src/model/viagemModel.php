@@ -39,7 +39,7 @@ class viagemModel {
         echo json_encode($dados);
         $id = uniqid();
         $sqlNewViagem = self::$conexao->prepare("
-            INSERT INTO VIAGEM (
+            INSERT INTO viagem (
                 id, 
                 onibus_id, 
                 origem, 

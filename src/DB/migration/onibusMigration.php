@@ -12,7 +12,7 @@ class onibusMigration{
         $sql = "CREATE TABLE onibus (
             id VARCHAR(255) PRIMARY KEY,
             numero VARCHAR(8) NOT NULL,
-            max_assento INT NOT NULL,
+            max_assento INT NOT NULL
         )";
 
         if ($this->conexao->query($sql) === TRUE) {
