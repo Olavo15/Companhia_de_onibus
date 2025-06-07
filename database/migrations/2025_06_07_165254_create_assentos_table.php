@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('assento', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('n_assento');
-            $table->boolean('disponivel');
             $table->uuid('onibus_id');
-
+            $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('onibus_id')->references('id')->on('onibus')->onDelete('cascade');
-
-            $table->timestamps();
+            $table->unique(['n_assento', 'onibus_id']);
         });
     }
 

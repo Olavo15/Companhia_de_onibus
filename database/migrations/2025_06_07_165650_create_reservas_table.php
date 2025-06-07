@@ -13,12 +13,16 @@ return new class extends Migration {
             $table->uuid('passageiro_id');
             $table->uuid('assento_id');
             $table->uuid('onibus_id');
+            $table->enum('status', ['pendente', 'confirmada', 'cancelada'])->default('pendente');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('viagem_id')->references('id')->on('viagens')->onDelete('cascade');
             $table->foreign('passageiro_id')->references('id')->on('passageiros')->onDelete('cascade');
             $table->foreign('assento_id')->references('id')->on('assento')->onDelete('cascade');
             $table->foreign('onibus_id')->references('id')->on('onibus')->onDelete('cascade');
+
+            $table->unique(['viagem_id', 'assento_id']);
         });
     }
 

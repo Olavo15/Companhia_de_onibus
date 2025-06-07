@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('numero', 8)->unique();
             $table->unsignedInteger('max_assento');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
