@@ -11,22 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locais', function (Blueprint $table) {
+        Schema::create('motoristas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nome');
-            $table->string('uf', 2);
-            $table->string('endereco')->nullable();
+            $table->string('cpf', 14)->unique();
+            $table->string('telefone')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('locais');
+        Schema::dropIfExists('motorista');
     }
 };
